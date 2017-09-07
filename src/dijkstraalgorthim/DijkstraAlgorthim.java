@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package dijkstraalgorthim;
 import javax.swing.*;
@@ -114,7 +112,7 @@ public class DijkstraAlgorthim extends JFrame{
                 int newNodeCost=Integer.parseInt(nei_cost.get(i).getText());
                  //send nodes to Node Object HashMap >> setNeighbor
                  currentNode.setNeighbor(newNod, newNodeCost);                
-            }//for loop ended       
+            }      
         }
     }   
 }

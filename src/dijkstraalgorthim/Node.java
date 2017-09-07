@@ -14,21 +14,24 @@ import java.util.HashMap;
 public class Node {
     private char name;
     private HashMap<Character, Integer> neighbor=new HashMap();
-    public Node(){
-        
-    }
+    public Node(){}
+    
     public Node (char name){
         setName(name);
     }
+    
     public void setName(char name){
         this.name=name;
     }
+    
     public void setNeighbor(char neighborName, int cost){
         this.neighbor.put(neighborName, cost);
     }
+    
     public char getName(){
         return this.name;
     }
+    
     public HashMap getNeighbor(){
         return this.neighbor;
     }

@@ -19,7 +19,6 @@ public class DijkstraAlgorthim extends JFrame{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         String nodes = JOptionPane.showInputDialog("Enter the name of the network nodes ");
        nodes= nodes.toUpperCase().trim();
         ArrayList<Node> NodesList=new ArrayList();

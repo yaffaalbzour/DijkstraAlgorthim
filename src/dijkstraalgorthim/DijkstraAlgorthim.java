@@ -1,5 +1,4 @@
 /*
- * 
  */
 package dijkstraalgorthim;
 import javax.swing.*;

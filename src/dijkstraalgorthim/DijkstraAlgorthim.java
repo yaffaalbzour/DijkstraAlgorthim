@@ -54,6 +54,11 @@ public class DijkstraAlgorthim extends JFrame{
              
              //satatment to stop until frame info. submitted
          }
+         Iterator<Node> iteratorList2=NodesList.iterator();
+         while(iteratorList2.hasNext()){
+             Node current=iteratorList2.next();
+             System.out.println(current.getNeighbor()+""+current.getName());
+         }
          //Input To enter src & dst nods 
          
     } 
@@ -109,7 +114,8 @@ public class DijkstraAlgorthim extends JFrame{
                 char newNod=newStringNode.charAt(0);
                 int newNodeCost=Integer.parseInt(nei_cost.get(i).getText());
                  //send nodes to Node Object HashMap >> setNeighbor
-                 currentNode.setNeighbor(newNod, newNodeCost);                
+                 currentNode.setNeighbor(newNod, newNodeCost); 
+                 System.out.print(currentNode.getName());
             }      
         }
     }   

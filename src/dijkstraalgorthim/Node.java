@@ -6,6 +6,7 @@
 package dijkstraalgorthim;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Node {
     }
     
     public HashMap getNeighbor(){
+        //how to print a hash map??!
         return this.neighbor;
     }
 }

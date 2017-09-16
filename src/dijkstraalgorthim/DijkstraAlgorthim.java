@@ -10,12 +10,14 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author yaffa & khadijah
  */
 public class DijkstraAlgorthim extends JFrame{
-//*public static Thread threadObject = new Thread();
+public static Thread threadObject = new Thread();
 boolean clicked  ;
 public static ArrayList<Node> NodesList;
     /**
@@ -23,18 +25,19 @@ public static ArrayList<Node> NodesList;
      */
     public static void main(String[] args) {//throws InterruptedException{
         String nodes = JOptionPane.showInputDialog("Enter the name of the network nodes ");
-       nodes= nodes.toUpperCase().trim();
+        //**nodes= nodes.toUpperCase();
          NodesList=new ArrayList();
-        HashSet<Character> NodeSet=new HashSet();   
-        //!!!!need to be changed to split the string according to spaces
-        for(int i=0; i<nodes.length();i++){
-           if(Character.isLetter(nodes.charAt(i))){
-              NodeSet.add(nodes.charAt(i));
-            }
-        }
-        //Copy the set contents to an ArrayList
-        Iterator<Character> iteratorSet=NodeSet.iterator();
+        HashSet<String> NodeSet=new HashSet();   
         
+        //split the string according to spaces
+        String[] words = nodes.split("\\s+");
+        for (int i = 0; i < words.length; i++) {
+            // remove special characters
+            words[i] = words[i].replaceAll("[^\\w]", "");
+            NodeSet.add(words[i]);
+        }
+        
+        Iterator<String> iteratorSet=NodeSet.iterator();
          while(iteratorSet.hasNext()){
               Node n=new Node(iteratorSet.next());
               NodesList.add(n);            
@@ -44,7 +47,7 @@ public static ArrayList<Node> NodesList;
          while(iteratorList.hasNext()){
              //threadObject.start();
              Node currentNode=iteratorList.next();
-             char nodeName =currentNode.getName();
+             String nodeName =currentNode.getName();
              String NO_nei = JOptionPane.showInputDialog("Enter the number of "+nodeName+"'s neighbors");
              int numberOfNeighbors = Integer.parseUnsignedInt(NO_nei);
              //**System.out.print(NodesList.size());
@@ -60,7 +63,18 @@ public static ArrayList<Node> NodesList;
              frame.setVisible(true);
              //** threadObject.wait();
              //satatment to stop until frame info. submitted
+             try {
+        
+        System.out.println("sleeping time....");
+        Thread.sleep(50000);
+        System.out.println("after 50000 ms");
+        
+    } catch (InterruptedException ex) {
+        Logger.getLogger(DijkstraAlgorthim.class.getName()).log(Level.SEVERE, null, ex);
+    }
          }
+    
+    System.out.print("end main");
          /***Iterator<Node> iteratorList2=NodesList.iterator();
          while(iteratorList2.hasNext()){
              Node current=iteratorList2.next();
@@ -113,20 +127,21 @@ public static ArrayList<Node> NodesList;
         public void actionPerformed(ActionEvent e){
             //Get values from text fields
             for(int i = 0; i<nei_name.size();i++){
-                String newStringNode= nei_name.get(i).getText();
-                char newNod=newStringNode.charAt(0);
+                String newNieghborName= nei_name.get(i).getText();
+                Node newNode=new Node(newNieghborName);
                 int newNodeCost=Integer.parseInt(nei_cost.get(i).getText());
                  //send nodes to Node Object HashMap >> setNeighbor
-                 currentNode.setNeighbor(newNod, newNodeCost); 
-                 System.out.print(currentNode.getName()+""+currentNode.getNeighbor());
+                 currentNode.setNeighbor(newNode, newNodeCost); 
+                 System.out.print(currentNode.getName()+""+currentNode.getNeighborMap());
                  clicked=true;
                 
                  if (clicked){
                     dispose();
-                    CalculatShortestPath();
-                  
+                    //CalculatShortestPath();
+                    System.out.println("Wake up");
+                    Thread.currentThread().interrupt();
                  }
-                //notify();
+                //
             }  
         }    
     }
@@ -134,7 +149,7 @@ public static ArrayList<Node> NodesList;
         Iterator<Node> iteratorList2=NodesList.iterator();
          while(iteratorList2.hasNext()){
              Node current=iteratorList2.next();
-             System.out.println("!!!!!!!"+current.getNeighbor()+""+current.getName());
+             System.out.println("!!!!!!!"+current.getNeighborMap()+""+current.getName());
          }
     }
 }
